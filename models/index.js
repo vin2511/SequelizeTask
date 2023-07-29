@@ -19,13 +19,14 @@ db.sequelize = sequelize;
 
 db.user = require("./user")(sequelize, DataTypes, Model);
 db.contact = require("./contact")(sequelize, DataTypes);
+db.task =  require('./task')(sequelize, DataTypes)
 
 db.user.hasOne(db.contact);
 db.contact.belongsTo(db.user);  
 
 db.user.hasMany(db.task,{as:'tasks',foreignKey:'userId'});
-
-
-db.sequelize.sync({ force: false  });
+db.task.belongsTo(db.user)
+  
+db.sequelize.sync({ force:false });
 
 module.exports = db;  

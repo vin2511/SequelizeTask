@@ -7,7 +7,7 @@ var db = require("../models");
 
 var User = db.user;
 var Contact = db.contact;
-var Task = ad.task
+var Task = db.task
 
 var addUser = async (req, res) => {
   try {
@@ -92,7 +92,6 @@ function hash(value) {
   return hash.digest("hex");
 }
 
-//const userAlongWithTask = 
 
 const getUser = async (req, res) => {
   try {
@@ -185,6 +184,30 @@ const updateUser = async (req, res) => {
   res.status(200).json({ data: updatedData });
 };
 
+const assignTasksToUser = async (userId, taskId) => {
+  try {
+    const user = await User.findByPK(userId);
+    const users = await User.findAll({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (users.length !== userIds.length) {
+      throw new Error('One or more users not found.');
+    }
+
+    const task = await Task.findByPK(id);
+    if (!task) {
+      throw new Error('Task not found.');
+    }
+    
+    await user.setUsers(users);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const queryUser = async (req, res) => {
   const data = await User.findAll({
     attributes: { exclude: ["lastName", "updatedAt "] },
@@ -201,4 +224,5 @@ module.exports = {
   updateUser,
   queryUser,
   getByName,
+  assignTasksToUser
 };
