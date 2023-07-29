@@ -1,13 +1,17 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const userRouter = require('./routes/userRoutes')
+const app = express()
+require('./models')
+app.use(express.json());    
+var userCtrl = require('./controllers/userController') 
+// app.get('/', function (req, res) {
+//   res.send('Hello World')
+// })
 
-const {userRouter} = require('./routers/userRoute');
-app.use(express.json());
-require('./models');
+app.use('/',userRouter)
 
-app.use('/',userRouter);
-  
-const port = 4001;
-app.listen(port,()=>{
-    console.log(`App is listening at localhost:${port}`);
-});        
+
+const port = 8989;
+app.listen(port,() =>{
+console.log(`app is running ${port}`);
+})
