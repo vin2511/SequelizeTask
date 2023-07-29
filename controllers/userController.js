@@ -7,6 +7,7 @@ var db = require("../models");
 
 var User = db.user;
 var Contact = db.contact;
+var Task = ad.task
 
 var addUser = async (req, res) => {
   try {
@@ -90,6 +91,8 @@ function hash(value) {
   hash.update(value);
   return hash.digest("hex");
 }
+
+//const userAlongWithTask = 
 
 const getUser = async (req, res) => {
   try {

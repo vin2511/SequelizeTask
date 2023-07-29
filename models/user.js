@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes, Model) => {
     {
       firstName: {
         type: DataTypes.STRING,
-      allowNull:false,
+        allowNull: false,
         validate: {
           isAlpha: true,
-          len :[ 2,20],
-          notNull:{
-            msg:'Please enter your first name.'
-          }
+          len: [2, 20],
+          notNull: {
+            msg: "Please enter your first name.",
+          },
         },
         get() {
           const rawValue = this.getDataValue("firstName");

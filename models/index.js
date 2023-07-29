@@ -23,6 +23,9 @@ db.contact = require("./contact")(sequelize, DataTypes);
 db.user.hasOne(db.contact);
 db.contact.belongsTo(db.user);  
 
+db.user.hasMany(db.task,{as:'tasks',foreignKey:'userId'});
+
+
 db.sequelize.sync({ force: false  });
 
-module.exports = db;
+module.exports = db;  
