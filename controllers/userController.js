@@ -149,7 +149,8 @@ const getById = async (req, res) => {
   try {
     const id = req.params.id
 
-    if (!id) {
+    if (!id) 
+    {
       return res.status(400).json({ Message: 'User Id is required.' })
     }
     const user = await User.findByPk(id, {
