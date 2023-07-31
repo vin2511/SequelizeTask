@@ -1,16 +1,20 @@
-const express = require ("express");
-const { addUser,getUser,getById,deleteUser,updateUser, loginUser,queryUser, getByName,assignTasksToUser } = require("../controllers/userController");
-const userRouter = express.Router();
+const express = require('express')
+const { signupUser, getAllUser, getById, deleteUser, updateUser, loginUser, logoutUser, queryUser, getByName, assignTasksToUser, getAllUsersWithContacts } = require('../controllers/userController')
+const userRouter = express.Router()
 
-userRouter.post('/add',addUser);
-userRouter.post('/login',loginUser)
-userRouter.get('/get',getUser);
-userRouter.get('/getbyid',getById);
-userRouter.delete('/:id',deleteUser);
-userRouter.patch('/update/:id',updateUser)
+userRouter.post('/signup', signupUser)
+userRouter.post('/login', loginUser)
+userRouter.post('/logout', logoutUser)
 
-userRouter.post('/assignTasksToUser',assignTasksToUser)
-userRouter.get("/query",queryUser)
-userRouter.get("/getbyname",getByName)
+userRouter.get('/getallusers', getAllUser)
+userRouter.get('/getbyid/:id', getById)
+userRouter.get('/users-with-contacts', getAllUsersWithContacts)
 
-module.exports = userRouter;
+userRouter.delete('/deleteuser/:id', deleteUser)
+userRouter.put('/updateuser/:id', updateUser)
+
+userRouter.post('/assignTasksToUser', assignTasksToUser)
+userRouter.get('/query', queryUser)
+userRouter.get('/getbyname', getByName)
+
+module.exports = userRouter

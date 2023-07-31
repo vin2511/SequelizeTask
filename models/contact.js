@@ -1,22 +1,27 @@
-module.exports = (sequelize, DataTypes) => {
-  const Contact = sequelize.define("Contacts", {
+module.exports = (sequelize, DataTypes, Model) => {
+  class Contact extends Model {}
+
+  Contact.init({
     phone_no: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        len:[10]
+      validate: {
+        len: [10]
       }
     },
     permanent_address: {
       type: DataTypes.STRING,
-      allowNull: false,
-  
+      allowNull: false
     },
     current_address: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
+      allowNull: true
+    }
+  },
+  {
+    sequelize,
+    modelName: 'Contact'
+  })
 
-  });
-  return Contact;
-};
+  return Contact
+}
